@@ -63,11 +63,13 @@ public class NotificationSoundsModule extends ReactContextBaseJavaModule {
         while (cursor.moveToNext()) {
             String notificationTitle = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX);
             String notificationUri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX);
+            String notificationType = cursor.getString(RingtoneManager.TYPE_NOTIFICATION);
             String id = cursor.getString(RingtoneManager.ID_COLUMN_INDEX);
 
             WritableMap newSound = Arguments.createMap();
             newSound.putString("title", notificationTitle);
             newSound.putString("url", notificationUri + "/" + id );
+            newSound.putString("type", notificationType);
             newSound.putString("soundID", id );
 
             list.pushMap(newSound);
